@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPU Scheduling Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>CPU Scheduling Simulator</h1>
+
+    <div class="form-section">
+      <label>Number of Processes:</label>
+      <input type="number" id="numProc" min="1" value="3">
+      <button onclick="generateInputs()">Generate</button>
+    </div>
+
+    <div id="procInputs"></div>
+
+    <div class="form-section">
+      <label>Choose Algorithm:</label>
+      <select id="algo">
+        <option value="fcfs">FCFS</option>
+        <option value="sjf">SJF (Non-preemptive)</option>
+        <option value="srtn">SRTN</option>
+        <option value="rr">Round Robin</option>
+        <option value="mlfq">MLFQ</option>
+      </select>
+      <input type="number" id="tq" placeholder="Time Quantum (for RR)">
+      <button class="dark-btn" onclick="runSimulation()">Run</button>
+    </div>
+
+    <div id="output"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
