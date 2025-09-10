@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CPU Scheduling Examples</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+    h1 { text-align: center; }
+    .buttons { text-align: center; margin-bottom: 20px; }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      border: none;
+      background: #0077cc;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover { background: #005fa3; }
+    .output {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      max-width: 700px;
+      margin: auto;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: center;
+    }
+    th { background: #eee; }
+  </style>
+</head>
+<body>
+
+  <h1>CPU Scheduling Algorithms</h1>
+  <div class="buttons">
+    <button onclick="showInfo('fcfs')">FCFS</button>
+    <button onclick="showInfo('sjf')">SJF</button>
+    <button onclick="showInfo('srtn')">SRTN</button>
+    <button onclick="showInfo('rr')">Round Robin</button>
+    <button onclick="showInfo('mlfq')">MLFQ</button>
+  </div>
+
+  <div class="output" id="output">
+    <p>Click a button to see definition and example.</p>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    function showInfo(type) {
+      let content = "";
+
+      if (type === "fcfs") {
+        content = `
+          <h2>First Come First Serve (FCFS)</h2>
+          <p><b>Definition:</b> Processes are executed in the order they arrive in the ready queue (like a queue).</p>
+          <p><b>Example:</b></p>
+          <table>
+            <tr><th>Process</th><th>Arrival Time</th><th>Burst Time</th><th>Completion</th><th>Turnaround</th><th>Waiting</th></tr>
+            <tr><td>P1</td><td>0</td><td>5</td><td>5</td><td>5</td><td>0</td></tr>
+            <tr><td>P2</td><td>1</td><td>3</td><td>8</td><td>7</td><td>4</td></tr>
+            <tr><td>P3</td><td>2</td><td>8</td><td>16</td><td>14</td><td>6</td></tr>
+          </table>
+        `;
+      }
+      else if (type === "sjf") {
+        content = `
+          <h2>Shortest Job First (SJF)</h2>
+          <p><b>Definition:</b> The process with the smallest burst time is executed first (non-preemptive).</p>
+          <p><b>Example:</b></p>
+          <table>
+            <tr><th>Process</th><th>Burst Time</th><th>Completion</th><th>Turnaround</th><th>Waiting</th></tr>
+            <tr><td>P1</td><td>6</td><td>6</td><td>6</td><td>0</td></tr>
+            <tr><td>P2</td><td>2</td><td>8</td><td>8</td><td>6</td></tr>
+            <tr><td>P3</td><td>4</td><td>12</td><td>12</td><td>8</td></tr>
+          </table>
+        `;
+      }
+      else if (type === "srtn") {
+        content = `
+          <h2>Shortest Remaining Time Next (SRTN)</h2>
+          <p><b>Definition:</b> Preemptive version of SJF. At any arrival, the process with least remaining time runs first.</p>
+          <p><b>Example:</b></p>
+          <p>Processes: P1(AT=0,BT=7), P2(AT=2,BT=4), P3(AT=4,BT=1)</p>
+          <p><b>Execution order:</b> P1 → P2 → P3 → P2 → P1</p>
+        `;
+      }
+      else if (type === "rr") {
+        content = `
+          <h2>Round Robin (RR)</h2>
+          <p><b>Definition:</b> Each process gets CPU for a fixed time quantum in a cyclic order.</p>
+          <p><b>Example (Time Quantum = 2):</b></p>
+          <p>Processes: P1(5), P2(3), P3(1)</p>
+          <p><b>Execution order:</b> P1(2) → P2(2) → P3(1) → P1(2) → P2(1) → P1(1)</p>
+        `;
+      }
+      else if (type === "mlfq") {
+        content = `
+          <h2>Multilevel Feedback Queue (MLFQ)</h2>
+          <p><b>Definition:</b> Uses multiple queues with different priorities and scheduling policies. A process may move between queues based on behavior and age.</p>
+          <p><b>Example:</b></p>
+          <p>- Queue 1: Time Quantum = 2 (RR)<br>
+             - Queue 2: Time Quantum = 4 (RR)<br>
+             - Queue 3: FCFS</p>
+          <p>Process P1(10) will move from Q1 → Q2 → Q3 as it doesn’t finish early.</p>
+        `;
+      }
+
+      document.getElementById("output").innerHTML = content;
+    }
+  </script>
+
+</body>
+</html>
