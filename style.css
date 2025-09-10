@@ -12,12 +12,13 @@ body {
   padding: 20px;
   background: #1e1e2f;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(180, 140, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); /* aqua glow */
 }
 
 h1 {
   text-align: center;
-  color: #d1c4e9;
+  color: #00e5ff;
+  text-shadow: 0 0 10px aqua;
 }
 
 .form-section {
@@ -33,16 +34,16 @@ input, select, button {
 }
 
 .dark-btn {
-  background-color: #2a2a40;
+  background-color: #0d1b2a;
   color: white;
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(180, 140, 255, 0.7);
+  box-shadow: 0 0 12px aqua;
   transition: transform 0.2s;
 }
 
 .dark-btn:hover {
   transform: scale(1.05);
-  background-color: #37375a;
+  background-color: #1b263b;
 }
 
 table {
@@ -59,5 +60,21 @@ th, td {
 
 th {
   background: #2f2f4f;
-  color: #d1c4e9;
+  color: #00e5ff;
+}
+
+.gantt {
+  display: flex;
+  margin-top: 10px;
+}
+
+.gantt span {
+  flex: 1;
+  background: #00bcd4;
+  margin: 2px;
+  padding: 10px;
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 0 0 12px aqua;
 }
